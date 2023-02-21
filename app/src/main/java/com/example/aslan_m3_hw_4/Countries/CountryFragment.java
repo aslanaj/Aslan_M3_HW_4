@@ -14,13 +14,17 @@ import android.view.ViewGroup;
 import com.example.aslan_m3_hw_4.Continents.Continent;
 import com.example.aslan_m3_hw_4.databinding.FragmentCountryBinding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CountryFragment extends Fragment {
 
     private FragmentCountryBinding binding;
     private ArrayList<Country> countriesList;
     CountryAdapter adapter;
+    private Integer position;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,22 +35,28 @@ public class CountryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadData();
-        Integer test = getArguments().getInt("Asia");
-        if (test == 0){
-            continentAsia();
-        } if (test == 1) {
-            continentEurope();
-        } if (test == 2) {
-            continentAfrica();
-        }  if (test == 3) {
-            continentNorthAmerica();
-        }  if (test == 4) {
-            continentSouthAmerica();
-        }
+
+        position = getArguments().getInt("Key");
+        onPositon(position);
 
         adapter = new CountryAdapter(countriesList, this);
         binding.rvCountry.setAdapter(adapter);
+        loadData();
+    }
+
+    // Были проблемы c не правильной передачой позиции itomki
+    private void onPositon(Integer position) {
+        if (position == 0) {
+            continentAsia();
+        } else if (position == 1 ) {
+            continentEurope();
+        } else if (position == 2) {
+            continentAfrica();
+        } else if (position == 3) {
+            continentNorthAmerica();
+        } else if (position == 4){
+            continentSouthAmerica();
+        }
 
     }
 
@@ -67,8 +77,8 @@ public class CountryFragment extends Fragment {
         countriesList.add(new Country("Indonesia", "Jakarta","Population 273 million","https://flags-world.com/wp-content/uploads/2021/01/flag-indonezii-3.png"));
         countriesList.add(new Country("Thailand", "Bangkok","Population 71 million","https://cdn.britannica.com/38/4038-004-111388C2/Flag-Thailand.jpg"));
         countriesList.add(new Country("India", "New Deli","Population 1.4 billion","https://cdn.britannica.com/97/1597-050-008F30FA/Flag-India.jpg"));
-        countriesList.add(new Country("Malaysia", "Kuala-Lumpur","Population 33 million","https://cdn.britannica.com/97/1597-050-008F30FA/Flag-India.jpg"));
-        countriesList.add(new Country("China", "Beijing","Population 1.5 billion","https://cdn.britannica.com/97/1597-050-008F30FA/Flag-India.jpg"));
+        countriesList.add(new Country("Malaysia", "Kuala-Lumpur","Population 33 million","https://cdn.britannica.com/31/4031-004-82B0F3A9/Flag-Malaysia.jpg"));
+        countriesList.add(new Country("China", "Beijing","Population 1.5 billion","https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/255px-Flag_of_the_People%27s_Republic_of_China.svg.png"));
         countriesList.add(new Country("Uzbekistan", "Tashkent","Population 34 million","https://img5.goodfon.ru/wallpaper/big/0/35/uzbekistan-flag-uzbekistan-large-flag-flag-of-uzbekistan-uzb.jpg"));
 
     }
@@ -92,7 +102,7 @@ public class CountryFragment extends Fragment {
         countriesList = new ArrayList<>();
         countriesList.add(new Country("USA", "Washington","Population 350 million","https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/188px-Flag_of_the_United_States.svg.png"));
         countriesList.add(new Country("Canada", "Ottawa","Population 38 million","https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1200px-Flag_of_Canada_%28Pantone%29.svg.png"));
-        countriesList.add(new Country("Mexico", "Mehiko","Population 126 million","https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1200px-Flag_of_Canada_%28Pantone%29.svg.png"));
+        countriesList.add(new Country("Mexico", "Mehiko","Population 126 million","https://cdn.britannica.com/73/2573-004-29818847/Flag-Mexico.jpg"));
         countriesList.add(new Country("Greenland", "Nuuk","Population 56 thousands","https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1200px-Flag_of_Greenland.svg.png"));
         countriesList.add(new Country("Cuba", "Havana","Population 11 million","https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Flag_of_Cuba.svg/1200px-Flag_of_Cuba.svg.png"));
         countriesList.add(new Country("Panama", "Panama","Population 4 million","https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Flag_of_Panama.svg/1200px-Flag_of_Panama.svg.png"));

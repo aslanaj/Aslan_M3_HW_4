@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,19 +55,13 @@ public class ContinentFragment extends Fragment implements OnClick {
     @Override
     public void onClick(int position) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("Asia", continentsList);
+
+        bundle.putInt("Key", position);
             CountryFragment countryFragment = new CountryFragment();
              countryFragment.setArguments(bundle);
             requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, countryFragment).addToBackStack(null).commit();
+            // Была проблема с переходом на другой фрагмент (ошибка .add() ) решение ( .replace() )
 
-        /*
-        if(position == 0) {
-            CountryFragment fragment = new CountryFragment();
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, fragment).addToBackStack(null).commit();
-        }
-
-         */
     }
 }
