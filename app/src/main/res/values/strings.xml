@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Aslan_M3_HW_4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_continent">Continent</string>
+    <string name="tv_c_c">Continent\'s Countries</string>
+    <string name="tv_c_n">Country Name</string>
+    <string name="tv_capital">Capital</string>
+    <string name="tv_country_detail">Country Detail. Population, GDP and etc.</string>
+</resources>
